@@ -9,5 +9,10 @@ def hello():
     return "Hello World!"
 
 
+@app.route("/maik")
+def maik_assist():
+    return "funcionou MAIK"
+
+
 if __name__ == "__main__":
     app.run()
