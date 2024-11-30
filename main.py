@@ -9,7 +9,7 @@ def hello():
     return "Hello World!"
 
 
-@app.route("/maik")
+@app.route("/maik", methods=["GET", "POST"])
 def maik_assist():
     return "funcionou MAIK"
 
