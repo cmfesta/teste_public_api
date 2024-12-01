@@ -25,7 +25,7 @@ def get_facebook():
     my_token = "abc123"  # The token you setup on the App dashboard
 
     if request.args.get("hub.verify_token") == my_token:
-        return int(datetime.datetime.now().timestamp())
+        return str(datetime.datetime.now().timestamp())
 
     return "invalid", 403
 
