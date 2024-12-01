@@ -1,7 +1,6 @@
 # flask_ngrok_example.py
 from flask import Flask
 from flask import request, jsonify
-import jwt
 
 app = Flask(__name__)
 
@@ -15,12 +14,13 @@ def hello():
 def maik_response():
     if request.method == "POST":
         response = request.json
-        print(response)
-        return response
+        return jsonify(response)
 
+    """
     if request.method == "GET":
         response = request.json
         return response
+    """
 
 
 if __name__ == "__main__":
