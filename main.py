@@ -14,7 +14,7 @@ def hello():
 def a1():
     if request.method == "GET":
         if "hub.challenge" in request.args:
-            return "hub challenge"
+            return request.json["hub.challenge"]
         return "no hub challenge"
 
 
