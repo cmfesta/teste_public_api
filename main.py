@@ -12,9 +12,9 @@ def hello():
 
 @app.route("/1", methods=["GET", "POST"])
 def a1():
-    if request.method == "GET":
-        if request.json["hub.challenge"]:
-            return request.json["hub.challenge"]
+    if request.method == "GET" and request.json["hub.challenge"]:
+        return "hub challenge"
+    return "no hub challenge"
 
 
 @app.route("/2", methods=["GET", "POST"])
