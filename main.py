@@ -16,11 +16,9 @@ def maik_response():
         response = request.json
         return jsonify(response)
 
-    """
     if request.method == "GET":
         response = request.json
-        return response
-    """
+        return request
 
 
 if __name__ == "__main__":
