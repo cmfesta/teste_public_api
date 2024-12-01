@@ -1,6 +1,7 @@
 # flask_ngrok_example.py
 from flask import Flask
 from flask import request, jsonify
+import datetime
 
 app = Flask(__name__)
 
@@ -13,11 +14,20 @@ def hello():
 @app.route("/1", methods=["GET", "POST"])
 def a1():
     if request.method == "GET":
-        if "hub.challenge" in request.args:
-            print(request.json)
-            print(request.args.get("hub.challenge"))
+        if "12" in request.args:
             return "hub challenge"
+        print(request.json)
         return "no hub challenge"
+
+
+@app.route("/facebook", methods=["GET"])
+def get_facebook():
+    my_token = "abc123"  # The token you setup on the App dashboard
+
+    if request.args.get("hub.verify_token") == my_token:
+        return jsonify({"hub.challenge": int(datetime.datetime.now().timestamp())})
+
+    return "invalid", 403
 
 
 @app.route("/maik", methods=["GET", "POST"])
