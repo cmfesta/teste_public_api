@@ -12,13 +12,12 @@ def hello():
 
 @app.route("/maik", methods=["GET", "POST"])
 def maik_response():
-    if request.method == "POST":
-        response = request.json
-        return "sucess"
-
     if request.method == "GET":
-        response = request.json
-        return request
+        if request.json["hub.challenge"]:
+            return request.json["hub.challenge"]
+
+        if request["hub.challenge"]:
+            return request.json["hub.challenge"]
 
 
 if __name__ == "__main__":
