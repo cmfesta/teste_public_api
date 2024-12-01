@@ -15,6 +15,7 @@ def hello():
 def maik_response():
     if request.method == "POST":
         response = request.json
+        print(response)
         return response
 
     if request.method == "GET":
