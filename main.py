@@ -19,6 +19,8 @@ def maik_response():
         if request["hub.challenge"]:
             return request.json["hub.challenge"]
 
+        return "teste maik"
+
 
 if __name__ == "__main__":
     app.run()
