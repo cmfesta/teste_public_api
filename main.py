@@ -11,15 +11,15 @@ conn_key = "w-api_FFCR1GDPPZ"
 host = "host01.serverapi.dev"
 url = f"https://{host}/message/send-text?connectionKey={conn_key}"
 
-payload = json.dumps(
-    {
-        "phoneNumber": "555384562222",
-        "text": "teste retorno",
-    }
-)
 
+def send_msg(url, token, number, msg_text):
 
-def send_msg(url, token, payload):
+    payload = json.dumps(
+        {
+            "phoneNumber": number,
+            "text": msg_text,
+        }
+    )
 
     headers = {
         "Content-Type": "application/json",
@@ -67,7 +67,8 @@ def maik_response():
     if request.method == "POST":
         data = dict(request.json)
         print(data["messageText"]["text"])
-        send_msg(url=url, token=token, payload=payload)
+        print(data)
+        # send_msg(url=url, token=token, number=number,msg_text=payload)
         return "ok"
     return "ok"
 
