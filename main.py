@@ -13,7 +13,7 @@ url = f"https://{host}/message/send-text?connectionKey={conn_key}"
 
 payload = json.dumps(
     {
-        "phoneNumber": "5553984562222",
+        "phoneNumber": "555384562222",
         "text": "teste retorno",
     }
 )
