@@ -33,8 +33,8 @@ def get_facebook():
 @app.route("/maik", methods=["GET", "POST"])
 def maik_response():
     if request.method == "GET":
-
-        return "teste maik"
+        print(request.json)
+        return jsonify(request.json)
 
 
 if __name__ == "__main__":
