@@ -220,7 +220,7 @@ def maik_response():
         client_msg = data["messageText"]["text"]
         number = data["recipient"]["id"]
         ai_message = ai_agent.call_chat(client_msg, number)
-        send_msg(url=url, token=token, number=number, msg_text=ai_message)
+        send_msg(url=url, token=token, number=number, msg_text=str(ai_message))
         return "ok"
     return "ok"
 
