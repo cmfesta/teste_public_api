@@ -66,9 +66,9 @@ def maik_response():
         return str(jsonify(request.json))
     if request.method == "POST":
         data = dict(request.json)
-        txt = data["messageText"]["text"]
+        client_msg = data["messageText"]["text"]
         number = data["recipient"]["id"]
-        send_msg(url=url, token=token, number=number, msg_text=txt)
+        send_msg(url=url, token=token, number=number, msg_text=client_msg)
         return "ok"
     return "ok"
 
