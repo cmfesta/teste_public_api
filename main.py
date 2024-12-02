@@ -35,7 +35,7 @@ def maik_response():
         print(request.json)
         return str(jsonify(request.json))
     if request.method == "POST":
-        print(request.json["message"])
+        print(request.args.get("message"))
         return "ok"
     return "ok"
 
