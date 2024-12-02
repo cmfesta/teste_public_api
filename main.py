@@ -1,8 +1,38 @@
 # flask_ngrok_example.py
 from flask import Flask
 from flask import request, jsonify
+import json
+import requests
 
 app = Flask(__name__)
+
+token = "i8tzMul6vNgKfnYfQJImULbFm3JILJah1"
+conn_key = "w-api_FFCR1GDPPZ"
+host = "host01.serverapi.dev"
+url = f"https://{host}/message/send-text?connectionKey={conn_key}"
+
+payload = json.dumps(
+    {
+        "phoneNumber": "5553984562222",
+        "text": "teste retorno",
+    }
+)
+
+
+def send_msg(url, token, payload):
+
+    headers = {
+        "Content-Type": "application/json",
+        "Authorization": f"Bearer {token}",
+    }
+
+    data = requests.post(
+        url=url,
+        data=payload,
+        headers=headers,
+    )
+
+    print(data)
 
 
 @app.route("/")
@@ -37,6 +67,7 @@ def maik_response():
     if request.method == "POST":
         data = dict(request.json)
         print(data["messageText"]["text"])
+        send_msg(url=url, token=token, payload=payload)
         return "ok"
     return "ok"
 
