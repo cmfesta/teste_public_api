@@ -67,7 +67,7 @@ def maik_response():
     if request.method == "POST":
         data = dict(request.json)
         print(data["messageText"]["text"])
-        print(data)
+        print(data["recipient"]["id"])
         # send_msg(url=url, token=token, number=number,msg_text=payload)
         return "ok"
     return "ok"
