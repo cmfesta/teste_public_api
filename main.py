@@ -1,7 +1,6 @@
 # flask_ngrok_example.py
 from flask import Flask
 from flask import request, jsonify
-import datetime
 
 app = Flask(__name__)
 
@@ -35,7 +34,7 @@ def maik_response():
     if request.method == "GET":
         print(request.json)
         return str(jsonify(request.json))
-    return str(jsonify(request.json))
+    return str(jsonify(request.view_args))
 
 
 if __name__ == "__main__":
