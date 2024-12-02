@@ -34,7 +34,7 @@ def get_facebook():
 def maik_response():
     if request.method == "GET":
         print(request.json)
-        return jsonify(request.json)
+        return str(jsonify(request.json))
 
 
 if __name__ == "__main__":
