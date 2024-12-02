@@ -62,7 +62,7 @@ class SearchInput(BaseModel):
 
     @validator("attendees")
     def validate_attendees(cls, v):
-        if not re.match(r"\"?([-a-zA-Z0-9.`?{}]+@\w+\.\w+)\"?", v):
+        if not re.match(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b", v):
             raise ToolException("Não é um email valido")
         return v
 
