@@ -62,11 +62,22 @@ class SearchInput(BaseModel):
 
     @validator("attendees")
     def validate_attendees(cls, v):
-        if not re.match(r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b", v):
-            if "<>" in v:
-                raise ToolException(
-                    "pare de adicionar <> no texto do email, pegue apenas o email"
-                )
+
+        def index_containing_substring(the_list, substring):
+            for i, s in enumerate(the_list):
+                if substring in s:
+                    return i
+
+        regex = r"\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,7}\b"
+
+        if not re.match(regex, v):
+            if len(v.split(" ")) > 1:
+                email_index = index_containing_substring(v.split(" "), "@")
+                if re.fullmatch(
+                    regex, v.split(" ")[int(email_index)].replace("<>", "")
+                ):
+                    email = v.split(" ")[int(email_index)].replace("<>", "")
+                    raise ToolException(f"O email valido é {email}")
             raise ToolException("Não é um email valido")
         return v
 
