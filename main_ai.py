@@ -10,7 +10,6 @@ from langchain_community.chat_message_histories import SQLChatMessageHistory
 
 os.environ["GROQ_API_KEY"] = "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"
 
-print("teste")
 class AssistantAI:
     def __init__(self, instructions, llm, db_path, tools) -> None:
         self.instructions = instructions
