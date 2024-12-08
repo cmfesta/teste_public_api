@@ -3,7 +3,7 @@ from pydantic.v1 import BaseModel, Field, validator
 from langchain_core.tools import StructuredTool
 from langchain_core.tools import ToolException
 from flask import Flask, request
-from cria_banco import messageDB
+from database import messageDB
 from langchain_groq import ChatGroq
 from langchain_experimental.utilities import PythonREPL
 from calendar_class import GoogleCalendarAPIClient
@@ -191,10 +191,8 @@ ai_agent = AssistantAI(
     tools=tools,
 )
 
-token = "i8tzMul6vNgKfnYfQJImULbFm3JILJah1"
-conn_key = "w-api_FFCR1GDPPZ"
-host = "host01.serverapi.dev"
-url = f"https://{host}/message/send-text?connectionKey={conn_key}"
+with open('wpp_conn_key.json', 'r') as file:
+    wpp_creds = json.load(file)
 
 
 def send_msg(url, token, number, msg_text):
@@ -236,7 +234,7 @@ def maik_response():
         number = data["recipient"]["id"]
         ai_message = ai_agent.call_chat(client_msg, number)
         send_msg(
-            url=url, token=token, number=number, msg_text=str(ai_message["output"])
+            url=wpp_creds["url"], token=wpp_creds["token"], number=number, msg_text=str(ai_message["output"])
         )
         return "ok"
     return "ok"
