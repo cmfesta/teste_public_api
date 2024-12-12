@@ -17,7 +17,7 @@ app = Flask(__name__)
 
 # instructions = open("scripts/instrucao_dif.txt", "r", encoding="utf-8").read()
 instructions = open(
-    "scripts/instrucao_direta_com_ferramentas.txt", "r", encoding="utf-8"
+    "scripts/malu_prompt.txt", "r", encoding="utf-8"
 ).read()
 calendar_obj = GoogleCalendarAPIClient()
 
