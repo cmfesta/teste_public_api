@@ -229,14 +229,15 @@ def home():
 @app.route("/maik", methods=["GET", "POST"])
 def maik_response():
     if request.method == "POST":
+        print(request.json)
         data = dict(request.json)
         client_msg = data["messageText"]["text"]
         number = data["recipient"]["id"]
         ai_message = ai_agent.call_chat(client_msg, number)
-        send_msg(
-            url=wpp_creds["url"], token=wpp_creds["token"], number=number, msg_text=str(ai_message["output"])
-        )
-        return "ok"
+        #send_msg(
+        #    url=wpp_creds["url"], token=wpp_creds["token"], number=number, msg_text=str(ai_message["output"])
+        #)
+        return ai_message["output"]
     return "ok"
 
 

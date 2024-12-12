@@ -55,6 +55,33 @@ class GoogleCalendarAPIClient:
 
         return events.get("items", [])
 
+    def get_free_time(self,min_date,max_date):
+
+        """Function that recieves two dates and look for the free time in the agenda
+
+        Args:
+        min_date: the minimum date to look for free time in the calendar.
+        max_date: the maximum date to look for free time in the calendar.
+
+        Return:
+            A dictionare with the free time for each day
+        """
+
+        start_datetime = pandas.Timestamp(min_date) + datetime.timedelta(hours=3)
+        end_datetime = pandas.Timestamp(max_date) + datetime.timedelta(hours=3)
+
+        body = {
+          "timeMin": start_datetime.isoformat(),
+          "timeMax": end_datetime.isoformat(),
+          "timeZone": 'UTC-3',
+          "items": []
+        }
+
+        eventsResult = self.service.freebusy().query(body=body).execute()
+        cal_dict = eventsResult[u'calendars']
+        for cal_name in cal_dict:
+            print(cal_name, cal_dict[cal_name])
+
     def return_meet(self):
         """Function that recieves a python code and prints the answer with print() function
 
