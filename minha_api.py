@@ -234,9 +234,9 @@ def maik_response():
         client_msg = data["messageText"]["text"]
         number = data["recipient"]["id"]
         ai_message = ai_agent.call_chat(client_msg, number)
-        #send_msg(
-        #    url=wpp_creds["url"], token=wpp_creds["token"], number=number, msg_text=str(ai_message["output"])
-        #)
+        send_msg(
+            url=wpp_creds["url"], token=wpp_creds["token"], number=number, msg_text=str(ai_message["output"])
+        )
         return ai_message["output"]
     return "ok"
 
