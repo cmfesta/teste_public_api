@@ -84,7 +84,7 @@ Before you respond, take a deep breath and pause to think carefully about the be
 <chat history/>
 
 <user question>
-    User question: {user_question}
+    User question: {input}
 <user question/>
 
 <Language> 
