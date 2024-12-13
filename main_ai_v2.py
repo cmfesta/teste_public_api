@@ -30,8 +30,7 @@ class AssistantAI:
                     self.instructions,
                 ),
                 MessagesPlaceholder(variable_name="chat_history"),
-                #("human", "{input}"),
-                ("human", MessagesPlaceholder(variable_name="input")),
+                ("human", "{input}"),
                 MessagesPlaceholder("agent_scratchpad"),
             ]
         )
